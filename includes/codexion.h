@@ -19,17 +19,20 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef struct s_args
 {
-	int		coders;
+	int		number_of_coders;
 	long	time_to_burnout;
 	long	time_to_compile;
 	long	time_to_debug;
 	long	time_to_refactor;
-	int		nb_compiles_required;
+	int		number_of_compiles_required;
 	long	dongle_cooldown;
 	int		scheduler;
 }	t_args;
+
+int	parse_args(int argc, char **argv, t_args *args);
 
 #endif

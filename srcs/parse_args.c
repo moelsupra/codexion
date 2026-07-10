@@ -10,14 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/codexion.h"
+#include "codexion.h"
 
-int	placeholder(void)
-{
-	return (0);
-}
-
-int	ft_atoi_strict(const char *s, long *out)
+static int	ft_atoi_strict(const char *s, long *out)
 {
 	long	result;
 	int		i;
@@ -42,15 +37,24 @@ int	ft_atoi_strict(const char *s, long *out)
 	return (1);
 }
 
-int	parse_args(int argc, char **argv, t_args *args)
+static int	parse_counts(char **argv, t_args *args)
 {
 	long	tmp;
 
-	if (argc != 9)
-		return (fprintf(stderr, "Error: expected 8 arguments\n"), 0);
-	if (!ft_atoi_strict(argv[1], &tmp) || tmp < 1)
+	if (!ft_atoi_strict(argv[1], &tmp) || tmp < 1 || tmp > INT_MAX)
 		return (fprintf(stderr, "Error: invalid number_of_coders\n"), 0);
-	args->nb_coders = (int)tmp;
+	args->number_of_coders = (int)tmp;
+	if (!ft_atoi_strict(argv[6], &tmp) || tmp < 1 || tmp > INT_MAX)
+		return (fprintf(stderr,
+				"Error: invalid number_of_compiles_required\n"), 0);
+	args->number_of_compiles_required = (int)tmp;
+	return (1);
+}
+
+static int	parse_time(char **argv, t_args *args)
+{
+	long	tmp;
+
 	if (!ft_atoi_strict(argv[2], &tmp) || tmp < 1)
 		return (fprintf(stderr, "Error: invalid time_to_burnout\n"), 0);
 	args->time_to_burnout = tmp;
@@ -63,17 +67,26 @@ int	parse_args(int argc, char **argv, t_args *args)
 	if (!ft_atoi_strict(argv[5], &tmp))
 		return (fprintf(stderr, "Error: invalid time_to_refactor\n"), 0);
 	args->time_to_refactor = tmp;
-	if (!ft_atoi_strict(argv[6], &tmp) || tmp < 1)
-		return (fprintf(stderr, "Error: invalid number_of_compiles_required\n"), 0);
-	args->nb_compiles_required = (int)tmp;
 	if (!ft_atoi_strict(argv[7], &tmp))
 		return (fprintf(stderr, "Error: invalid dongle_cooldown\n"), 0);
 	args->dongle_cooldown = tmp;
+	return (1);
+}
+
+int	parse_args(int argc, char **argv, t_args *args)
+{
+	if (argc != 9)
+		return (fprintf(stderr, "Error: expected 8 arguments\n"), 0);
+	if (!parse_counts(argv, args))
+		return (0);
+	if (!parse_time(argv, args))
+		return (0);
 	if (strcmp(argv[8], "fifo") == 0)
 		args->scheduler = 0;
 	else if (strcmp(argv[8], "edf") == 0)
 		args->scheduler = 1;
 	else
-		return (fprintf(stderr, "Error: scheduler must be 'fifo' or 'edf'\n"), 0);
+		return (fprintf(stderr,
+				"Error: scheduler must be 'fifo' or 'edf'\n"), 0);
 	return (1);
 }
