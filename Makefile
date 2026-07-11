@@ -2,7 +2,7 @@ NAME	= codexion
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror -pthread
 
-SRCS	= srcs/main.c \
+SRCS	= srcs/main.c srcs/sim.c \
 			srcs/parse_args.c
 
 OBJS	= $(SRCS:.c=.o)
