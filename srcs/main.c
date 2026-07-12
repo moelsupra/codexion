@@ -6,7 +6,7 @@
 /*   By: moelamma <moelamma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 16:44:25 by moelamma          #+#    #+#             */
-/*   Updated: 2026/07/11 16:54:08 by moelamma         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:05:07 by moelamma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	print_sim(&sim);
+	if (!start_coders(&sim))
+	{
+		free_sim(&sim);
+		return (1);
+	}
+	join_coders(&sim);
 	free_sim(&sim);
 	return (0);
 }
