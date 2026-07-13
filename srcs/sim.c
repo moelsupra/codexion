@@ -6,7 +6,7 @@
 /*   By: moelamma <moelamma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 11:49:34 by moelamma          #+#    #+#             */
-/*   Updated: 2026/07/11 16:53:57 by moelamma         ###   ########.fr       */
+/*   Updated: 2026/07/12 22:03:11 by moelamma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	init_sim(t_args *args, t_sim *sim)
 	i = 0;
 	while (i < nb_coders)
 	{
+		pthread_mutex_init(&sim->dongles[i].lock, NULL);
 		sim->dongles[i].id = i;
 		sim->coders[i].id = i + 1;
 		sim->coders[i].compiles_done = 0;
@@ -49,12 +50,22 @@ void	print_sim(t_sim *sim)
 			sim->coders[i].id,
 			sim->coders[i].right->id,
 			sim->coders[i].left->id);
+		printf("-----> dongle(%d).lock = %p\n",
+			sim->dongles[i].id, &sim->dongles[i].lock);
 		i++;
 	}
 }
 
 void	free_sim(t_sim *sim)
 {
+	int	i;
+
+	i = 0;
+	while (i < sim->args.number_of_coders)
+	{
+		pthread_mutex_destroy(&sim->dongles[i].lock);
+		i++;
+	}
 	if (sim->dongles)
 	{
 		free(sim->dongles);
