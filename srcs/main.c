@@ -25,8 +25,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	print_sim(&sim);
+	printf("hey1\n");
 	if (!start_coders(&sim))
 	{
+		printf("hey2\n");
 		free_sim(&sim);
 		return (1);
 	}

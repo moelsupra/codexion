@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/codexion.h"
+#include "codexion.h"
 
 long	get_elapsed_ms(t_sim *sim)
 {
@@ -19,20 +19,17 @@ long	get_elapsed_ms(t_sim *sim)
 
 	gettimeofday(&now, NULL);
 	ms = (now.tv_sec - sim->start_time.tv_sec) * 1000;
-	printf("tv sec ms : %ld\n", ms);
 	ms += (now.tv_usec - sim->start_time.tv_usec) / 1000;
-	printf("tv usec ms : %ld\n", ms);
 
 	return (ms);
 }
 
-int	main(void)
+void	log_state(t_sim *sim, int coder_id, const char *msg)
 {
-	struct timeval	now;
-	long			ms;
+	long	ts;
 
-	ms = 0;
-	gettimeofday(&now, NULL);
-
+	pthread_mutex_lock(&sim->log_lock);
+	ts = get_elapsed_ms(sim);
+	printf("%ld %d %s", ts, coder_id, msg);
+	pthread_mutex_unlock(&sim->log_lock);
 }
-// void	log_state(t_sim *sim, int coder_id, const char *msg);

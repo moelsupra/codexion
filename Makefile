@@ -2,8 +2,8 @@ NAME	= codexion
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror -pthread
 
-SRCS	= srcs/main.c srcs/sim.c srcs/threads.c \
-			srcs/parse_args.c
+SRCS	= srcs/main.c srcs/sim.c srcs/threads.c srcs/dongles.c \
+			srcs/parse_args.c srcs/loggin.c 
 
 OBJS	= $(SRCS:.c=.o)
 
