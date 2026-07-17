@@ -32,29 +32,30 @@ int	init_sim(t_args *args, t_sim *sim)
 		sim->coders[i].compiles_done = 0;
 		sim->coders[i].right = &sim->dongles[i];
 		sim->coders[i].left = &sim->dongles[(i - 1 + nb_coders) % nb_coders];
+		sim->coders[i].sim = sim;
 		i++;
 	}
 	return (1);
 }
 
-void	print_sim(t_sim *sim)
-{
-	int	i;
+// void	print_sim(t_sim *sim)
+// {
+// 	int	i;
 
-	printf("=== SIMULATION ===\n");
-	printf("Number of coders: %d\n", sim->args.number_of_coders);
-	i = 0;
-	while (i < sim->args.number_of_coders)
-	{
-		printf("coder %d: right=dongle(%d) left=dongle(%d)\n",
-			sim->coders[i].id,
-			sim->coders[i].right->id,
-			sim->coders[i].left->id);
-		printf("-----> dongle(%d).lock = %p\n",
-			sim->dongles[i].id, &sim->dongles[i].lock);
-		i++;
-	}
-}
+// 	printf("=== SIMULATION ===\n");
+// 	printf("Number of coders: %d\n", sim->args.number_of_coders);
+// 	i = 0;
+// 	while (i < sim->args.number_of_coders)
+// 	{
+// 		printf("coder %d: right=dongle(%d) left=dongle(%d)\n",
+// 			sim->coders[i].id,
+// 			sim->coders[i].right->id,
+// 			sim->coders[i].left->id);
+// 		printf("-----> dongle(%d).lock = %p\n",
+// 			sim->dongles[i].id, &sim->dongles[i].lock);
+// 		i++;
+// 	}
+// }
 
 void	free_sim(t_sim *sim)
 {

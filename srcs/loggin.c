@@ -30,6 +30,6 @@ void	log_state(t_sim *sim, int coder_id, const char *msg)
 
 	pthread_mutex_lock(&sim->log_lock);
 	ts = get_elapsed_ms(sim);
-	printf("%ld %d %s", ts, coder_id, msg);
+	printf("%ld %d %s\n", ts, coder_id, msg);
 	pthread_mutex_unlock(&sim->log_lock);
 }

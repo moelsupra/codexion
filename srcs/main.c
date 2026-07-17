@@ -24,11 +24,9 @@ int	main(int argc, char **argv)
 		free_sim(&sim);
 		return (1);
 	}
-	print_sim(&sim);
-	printf("hey1\n");
+	// print_sim(&sim);
 	if (!start_coders(&sim))
 	{
-		printf("hey2\n");
 		free_sim(&sim);
 		return (1);
 	}
