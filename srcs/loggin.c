@@ -20,7 +20,9 @@ long	get_elapsed_ms(t_sim *sim)
 	gettimeofday(&now, NULL);
 	ms = (now.tv_sec - sim->start_time.tv_sec) * 1000;
 	ms += (now.tv_usec - sim->start_time.tv_usec) / 1000;
-
+	// printf("\n-----------------%ld-----------------\n", now.tv_usec);
+	// printf("\n-----------------%ld-----------------\n", now.tv_sec);
+	// printf("\n-----------------%ld-----------------\n", ms);
 	return (ms);
 }
 

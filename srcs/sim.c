@@ -35,6 +35,8 @@ int	init_sim(t_args *args, t_sim *sim)
 		sim->coders[i].sim = sim;
 		i++;
 	}
+	pthread_mutex_init(&sim->log_lock, NULL);
+	gettimeofday(&sim->start_time, NULL);
 	return (1);
 }
 
