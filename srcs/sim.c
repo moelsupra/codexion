@@ -6,7 +6,7 @@
 /*   By: moelamma <moelamma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 11:49:34 by moelamma          #+#    #+#             */
-/*   Updated: 2026/07/12 22:03:11 by moelamma         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:27:17 by moelamma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	init_sim(t_args *args, t_sim *sim)
 // void	print_sim(t_sim *sim)
 // {
 // 	int	i;
-
+//
 // 	printf("=== SIMULATION ===\n");
 // 	printf("Number of coders: %d\n", sim->args.number_of_coders);
 // 	i = 0;
