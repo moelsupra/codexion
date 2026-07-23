@@ -6,7 +6,7 @@
 /*   By: moelamma <moelamma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 12:00:56 by moelamma          #+#    #+#             */
-/*   Updated: 2026/07/24 00:08:06 by moelamma         ###   ########.fr       */
+/*   Updated: 2026/07/24 00:16:39 by moelamma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long	get_elapsed_ms(t_sim *sim)
 
 	gettimeofday(&now, NULL);
 	sec = (now.tv_sec - sim->start_time.tv_sec);
-	usec += (now.tv_usec - sim->start_time.tv_usec);
+	usec = (now.tv_usec - sim->start_time.tv_usec);
 	if (usec < 0)
 	{
 		sec -= 1;
